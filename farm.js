@@ -3,10 +3,9 @@ Loon 脚本：QQ农场小程序 自动提取 code
 使用方式：
   1. 进入 QQ → 经典农场小程序
   2. 脚本会自动抓到 ws 连接里的 code
-  3. 弹出本地通知 + 存到本地空间
+  3. 弹出本地通知后停止脚本运行
 */
 
-const body = $response.body || "";
 const url = $request.url || "";
 
 if (url.includes("gate-obt.nqf.qq.com/prod/ws") && url.includes("code=")) {
@@ -15,12 +14,9 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws") && url.includes("code=")) {
     if (codeMatch && codeMatch[1]) {
         const code = codeMatch[1];
 
-        // 存到本地（方便以后农场脚本读取）
-        $persistentStore.write(code, "qq_farm_code");
-
         // 弹出本地通知（用于提醒用户）
         const notifyTitle = "QQ农场 code 已捕获";
-        const notifyBody = `code = ${code}\n\n已保存，可以拿去挂了永哥！🤩`;
+        const notifyBody = `code = ${code}\n\n已捕获 code，脚本执行完毕！🤩`;
 
         $notification.post(notifyTitle, "", notifyBody);
 
@@ -28,7 +24,9 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws") && url.includes("code=")) {
     } else {
         console.log("[QQ农场] 未在 URL 中找到 code 参数");
     }
+} else {
+    console.log("[QQ农场] 未匹配到目标 URL");
 }
 
-// 必须返回原响应，以保持小程序的正常运行
-$done({ body });
+// 捕获完成后直接结束脚本运行
+$done();
