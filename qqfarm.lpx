@@ -1,4 +1,4 @@
-#!name = QQ农场获取Code (Loon版)
+#!name = QQ农场获取Code
 #!desc = 自动从 QQ 农场小程序 WS 连接中提取并保存 Code。
 #!author = Diane-Birch
 #!icon = https://raw.githubusercontent.com/luestr/IconSet/master/App/QQ.png
