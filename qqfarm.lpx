@@ -6,7 +6,7 @@
 
 [Script]
 # 注意：这里直接集成了转换后的代码，无需额外引用外部 JS
-http-request ^https?://gate-obt\.nqf\.qq\.com/prod/ws\? script-path=https://raw.githubusercontent.com/Diane-Birch/card/main/farm.js, tag=获取QQ农场Code
+http-request ^https?://gate-obt\.nqf\.qq\.com/prod/ws\? script-path=farm.js, tag=获取QQ农场Code
 
 [MITM]
 hostname = gate-obt.nqf.qq.com
