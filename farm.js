@@ -27,6 +27,5 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws") && url.includes("code=")) {
 } else {
     console.log("[QQ农场] 未匹配到目标 URL");
 }
-
 // 捕获完成后直接结束脚本运行
 $done();
