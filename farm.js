@@ -1,11 +1,5 @@
 /*
 Loon 脚本：QQ农场小程序 自动提取 CK (session/token)
-功能：
-  1. 拦截 ws 握手响应，提取真正的 token/session
-  2. 弹出通知提醒
-  3. 原始响应正常返回
-*/
-/*
 脚本：QQ农场小程序 自动提取 code
 兼容：Quantumult X / Loon / Surge / Shadowrocket
 */
