@@ -1,7 +1,10 @@
 /*
-Loon 脚本：QQ农场 - 捕获 code & openID
+Loon 脚本：QQ农场小程序 自动提取 CK (session/token)
+功能：
+  1. 拦截 ws 握手响应，提取真正的 token/session
+  2. 弹出通知提醒
+  3. 原始响应正常返回
 */
-
 const url = $request.url || "";
 
 if (url.includes("gate-obt.nqf.qq.com/prod/ws")) {
