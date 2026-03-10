@@ -2,7 +2,6 @@
 #!desc = 自动从 QQ 农场小程序 WS 连接中提取并保存 Code。
 #!author = Diane-Birch
 #!icon = https://raw.githubusercontent.com/luestr/IconSet/master/App/QQ.png
-#!date = 2024-03-09
 [Script]
 # QQ农场小程序 自动提取 code
 # 在下方填写脚本的远程路径（仓库路径）
