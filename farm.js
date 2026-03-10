@@ -27,7 +27,7 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws") && url.includes("code=")) {
 }
 
 // 兼容所有平台的结束
-$.done({ body: $response.body || "" });
+$.done({});
 
 
 // ===== Env 框架 =====
