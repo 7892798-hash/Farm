@@ -16,7 +16,7 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws") && url.includes("code=")) {
 
         // 发送本地通知，提示用户捕获成功
         const notifyTitle = "QQ农场 code 已捕获";
-        const notifyBody = `code = ${code}\n\n捕获成功！网络已恢复正常 🤩`;
+        const notifyBody = `code = ${code}\n\n牛逼，被你抓到了！ 🤩`;
 
         $notification.post(notifyTitle, "", notifyBody);
 
