@@ -1,13 +1,12 @@
 /*
-Loon 脚本：QQ农场 - 捕获 code 和 openID
+Loon 脚本：QQ农场 - 捕获 code & openID
 */
 
 const url = $request.url || "";
 
 if (url.includes("gate-obt.nqf.qq.com/prod/ws")) {
-    console.log("[QQ农场] 命中 URL: " + url);
-
-    // 解析所有 URL 参数
+    
+    // 解析 URL 参数
     const params = {};
     const queryString = url.split("?")[1] || "";
     queryString.split("&").forEach(pair => {
@@ -17,24 +16,18 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws")) {
 
     const code   = params["code"]   || "";
     const openID = params["openID"] || "";
-    const ver    = params["ver"]    || "";
 
     console.log("[QQ农场] code   = " + code);
     console.log("[QQ农场] openID = " + openID);
-    console.log("[QQ农场] ver    = " + ver);
 
-    if (!openID) {
+    if (code) {
         $notification.post(
-            "QQ农场 ⚠️ openID 为空",
-            "这是加载失败的原因",
-            "请确认小程序登录流程是否完整，openID 未传入"
+            "🌾 QQ农场参数已捕获",
+            `openID: ${openID || "（空）"}`,
+            `code: ${code}`
         );
-    } else if (code && openID) {
-        $notification.post(
-            "QQ农场 ✅ 参数捕获成功",
-            "",
-            `code=${code}\nopenID=${openID}`
-        );
+    } else {
+        console.log("[QQ农场] 未找到 code");
     }
 }
 
