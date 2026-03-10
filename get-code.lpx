@@ -5,7 +5,7 @@
 # QQ农场小程序 自动提取 code
 # 在下方填写脚本的远程路径（仓库路径）
 [Script]
-http-response ^https://gate-obt\.nqf\.qq\.com/prod/ws script-path=https://raw.githubusercontent.com/7892798-hash/Farm/main/get-code.js, requires-body=true, timeout=10, tag=QQ农场
+http-request ^https://gate-obt\.nqf\.qq\.com/prod/ws script-path=https://raw.githubusercontent.com/7892798-hash/Farm/main/get-code.js, requires-body=true, timeout=10, tag=QQ农场
 
 [MITM]
 hostname = gate-obt.nqf.qq.com
