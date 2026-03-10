@@ -5,11 +5,14 @@ Loon 脚本：QQ农场小程序 自动提取 CK (session/token)
   2. 弹出通知提醒
   3. 原始响应正常返回
 */
+/*
+Loon 脚本：QQ农场 - 捕获 code & openID (http-request)
+*/
+
 const url = $request.url || "";
 
 if (url.includes("gate-obt.nqf.qq.com/prod/ws")) {
-    
-    // 解析 URL 参数
+
     const params = {};
     const queryString = url.split("?")[1] || "";
     queryString.split("&").forEach(pair => {
@@ -29,9 +32,9 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws")) {
             `openID: ${openID || "（空）"}`,
             `code: ${code}`
         );
-    } else {
-        console.log("[QQ农场] 未找到 code");
     }
 }
 
-$done({ body: $response.body || "" });
+// http-request 脚本：直接放行，不修改请求
+$done({});
+
