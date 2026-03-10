@@ -19,17 +19,11 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws")) {
         const [key, value] = pair.split("=");
         if (key) params[decodeURIComponent(key)] = decodeURIComponent(value || "");
     });
-
     const code   = params["code"]   || "";
-    const openID = params["openID"] || "";
-
     console.log("[QQ农场] code   = " + code);
-    console.log("[QQ农场] openID = " + openID);
-
     if (code) {
         $notification.post(
             "🌾 QQ农场参数已捕获",
-            `openID: ${openID || "（空）"}`,
             `code: ${code}`
         );
     }
