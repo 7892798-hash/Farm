@@ -15,7 +15,7 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws") && url.includes("code=")) {
         $persistentStore.write(code, "qq_farm_code");
 
         $notification.post(
-            "QQ农场 code 已捕获",
+            "QQ农场 code 已捕获，可以拿去挂了哥哥~😍",
             "",
             "code = " + code
         );
