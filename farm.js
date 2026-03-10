@@ -29,4 +29,4 @@ if (url.includes("gate-obt.nqf.qq.com/prod/ws") && url.includes("code=")) {
 }
 
 // 必须返回原响应内容，确保网络连接正常
-$done({ body });
+$done({ body：body });
