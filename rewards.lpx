@@ -1,0 +1,10 @@
+#!name = 微软积分签到获取Code
+#!desc = 自动从 微软积分小程序 WS 连接中提取并保存 Code。
+#!icon = https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Microsoft_Rewards_Logo.svg/1200px-Microsoft_Rewards_Logo.svg.png
+[Script]
+# 微软积分签到 自动提取 code
+# 在下方填写脚本的远程路径（仓库路径）
+http-request ^https://rewards\.bing\.com script-path=https://raw.githubusercontent.com/your-repo/your-script/main/get-ms-code.js, requires-body=true, timeout=10, tag=微软积分签到
+
+[MITM]
+hostname = rewards.bing.com
