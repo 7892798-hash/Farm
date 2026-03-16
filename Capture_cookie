@@ -1,0 +1,75 @@
+/**
+ * 微软积分 - Bing Cookie 自动捕获
+ *
+ * 触发时机：用户在浏览器访问 rewards.bing.com 时，
+ * Loon 拦截请求并自动提取 Cookie 保存，无需手动复制。
+ *
+ * 对应 Plugin 配置：
+ *   [Script]
+ *   http-request https://rewards.bing.com/ script-path=capture_cookie.js, tag=MS积分-Cookie捕获
+ *   [MITM]
+ *   hostname = rewards.bing.com
+ */
+
+'use strict';
+
+(function () {
+  try {
+    const headers = $request.headers || {};
+
+    // 兼容大小写（Loon 中 header 键名可能不固定大小写）
+    let cookie = '';
+    const keys = Object.keys(headers);
+    for (let i = 0; i < keys.length; i++) {
+      if (keys[i].toLowerCase() === 'cookie') {
+        cookie = headers[keys[i]];
+        break;
+      }
+    }
+
+    if (!cookie) {
+      $done({});
+      return;
+    }
+
+    // 必须包含 MUID 才认为是有效的登录态 Cookie
+    if (cookie.indexOf('MUID=') === -1) {
+      $done({});
+      return;
+    }
+
+    const saved = $persistentStore.read('MSR_bingCookie') || '';
+
+    // Cookie 未变化则不重复写入和通知
+    if (saved === cookie) {
+      $done({});
+      return;
+    }
+
+    $persistentStore.write(cookie, 'MSR_bingCookie');
+
+    // 每天只通知一次，避免频繁打扰
+    const today = (function () {
+      const d = new Date();
+      return '' + d.getFullYear() +
+        String(d.getMonth() + 1).padStart('0', 2) +
+        String(d.getDate()).padStart('0', 2);
+    })();
+
+    const lastNotify = $persistentStore.read('MSR_cookieNotifyDate') || '';
+    if (lastNotify !== today) {
+      $persistentStore.write(today, 'MSR_cookieNotifyDate');
+      $notification.post(
+        '✅ 微软积分',
+        'Bing Cookie 已自动更新！',
+        '活动和搜索任务将在下次 Cron 执行时自动完成。'
+      );
+    }
+
+    console.log('[MS积分-Cookie] 更新成功，长度: ' + cookie.length);
+  } catch (e) {
+    console.log('[MS积分-Cookie] 捕获出错: ' + e.message);
+  }
+
+  $done({});
+})();
