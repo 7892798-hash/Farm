@@ -32,7 +32,7 @@
 
 [Script]
 # 自动捕获 OAuth 授权码（用户登录后跳转时触发）
-http-request https://login.live.com/oauth20_desktop.srf script-path=https://raw.githubusercontent.com/7892798-hash/Farm/main/get_mscode.js, requires-body=false, tag=MS积分-捕获授权码
+http-request https://login.live.com/oauth20_desktop.srf script-path=https://raw.githubusercontent.com/7892798-hash/Farm/main/get-mscode.js, requires-body=false, tag=MS积分-捕获授权码
 
 # 自动捕获 Bing Cookie（用户访问 rewards.bing.com 时触发）
 http-request https://rewards.bing.com/ script-path=https://raw.githubusercontent.com/7892798-hash/Farm/main/capture_cookie.js, requires-body=false, tag=MS积分-捕获Cookie
