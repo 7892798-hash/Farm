@@ -1,10 +1,37 @@
-#!name = 微软积分签到获取Code
-#!desc = 自动从 微软积分小程序 WS 连接中提取并保存 Code。
-#!icon = https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Microsoft_Rewards_Logo.svg/1200px-Microsoft_Rewards_Logo.svg.png
-[Script]
-# 微软积分签到 自动提取 code
-# 在下方填写脚本的远程路径（仓库路径）
-http-request ^https://rewards\.bing\.com script-path=https://raw.githubusercontent.com/7892798-hash/Farm/main/get-mscode.js, requires-body=true, timeout=10, tag=微软积分签到
+#!name=微软积分商城签到
+#!desc=每天自动完成 Microsoft Rewards 任务（✅签入 ✅阅读 ✅活动 ✅搜索）
+#!author=geoisam (Loon版适配)
+#!icon=https://rewards.bing.com/rewards.png
+#!homepage=https://github.com/geoisam/FuckScripts
 
-[MITM]
-hostname = rewards.bing.com
+# ==================== 脚本任务 ====================
+# cron 每20分钟执行一次，timeout 设为 300 秒（搜索任务耗时较长）
+
+[Script]
+cron "*/20 * * * *" script-path=ms_rewards.js, timeout=300, tag=微软积分商城签到
+
+# ==================== BoxJS 配置参考 ====================
+# 安装 BoxJS 后可在 UI 中配置以下参数，无需手动编辑脚本
+# BoxJS 订阅：https://cdn.jsdelivr.net/gh/geoisam/FuckScripts@main/boxjs.json（示例，请以实际为准）
+#
+# 可配置的 persistentStore 键值（前缀 MSR_）：
+#
+#  MSR_authCode     授权码链接
+#                   获取方法：
+#                   1. 浏览器打开以下链接（需已登录微软账号）:
+#                      https://login.live.com/oauth20_authorize.srf?client_id=0000000040170455&scope=service::prod.rewardsplatform.microsoft.com::MBI_SSL&response_type=code&redirect_uri=https://login.live.com/oauth20_desktop.srf
+#                   2. 登录后浏览器地址栏会出现 M.C540_BAY... 开头的链接，复制完整链接粘贴此处
+#                   注意：授权码只能使用一次，Refresh Token 会自动保存，之后无需重新填写
+#
+#  MSR_bingCookie   Bing 登录 Cookie（用于活动和搜索任务）
+#                   获取方法：
+#                   1. PC 浏览器登录 https://rewards.bing.com
+#                   2. F12 → Network → 刷新页面 → 点击任意请求
+#                   3. 在 Request Headers 中找到 Cookie 字段，复制完整值
+#                   注意：Cookie 有效期约数天~数周，失效后需重新获取
+#
+#  MSR_taskSign     启用签入任务 (true/false)，默认 true
+#  MSR_taskRead     启用阅读任务 (true/false)，默认 true
+#  MSR_taskPromos   启用活动任务 (true/false)，默认 true
+#  MSR_taskSearch   启用搜索任务 (true/false)，默认 true
+#  MSR_bingHost     Bing 主机 (cn.bing.com / www.bing.com)，默认 cn.bing.com
