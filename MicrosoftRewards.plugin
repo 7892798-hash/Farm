@@ -1,0 +1,18 @@
+#!name=Microsoft Rewards 自动任务
+#!desc=每日自动完成 Microsoft Rewards 的 Web 搜索 / 活动推广 / App 签到 / 阅读
+#!author=ChatGPT
+#!homepage=https://nsloon.app/
+#!icon=https://store-images.s-microsoft.com/image/apps.58212.783a7d74-cf5a-4dca-aed6-b5722f311eca.f8c0cb0b-6b57-4f06-99b1-5d7ee04e38e6.517a44fd-f164-40ae-996b-f959198325c2
+#!loon_version=3.2.1(733)
+
+[Argument]
+enableApp = switch,false,tag=启用 App 任务,desc=开启后执行 App 签到和阅读任务
+limitSearch = switch,true,tag=限制搜索次数,desc=每次运行只搜索 4-8 次
+searchSpan = input,"15",tag=搜索间隔秒数,desc=默认 15，实际会 ±5 秒浮动
+apiMode = select,"单机模式","hot.eray.cc","hot.baiwumm.com","hot.cnxiaobai.com","hot.zhusun.top","hot.imsyy.top","hot.nntool.cc",tag=搜索词来源,desc=单机模式为随机汉字
+pushUrl = input,"",tag=完成后 Push URL,desc=留空则不推送
+msaRefreshToken = input,"",tag=微软 Refresh Token,desc=App 任务需要，建议填 refresh_token
+msaAccessToken = input,"",tag=微软 Access Token,desc=可留空，脚本会优先尝试用 refresh_token 刷新
+
+[Script]
+cron "*/20 * * * *" script-path=https://example.com/loon-microsoft-rewards.js, timeout=300, tag=Microsoft Rewards 自动任务, argument=[{enableApp},{limitSearch},{searchSpan},{apiMode},{pushUrl},{msaRefreshToken},{msaAccessToken}]
