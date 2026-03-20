@@ -1,1 +1,6 @@
+#!name = 谷歌重定向
+#!icon = https://raw.githubusercontent.com/luestr/IconSet/master/App/QQ.png
+[Rewrite]
 ^https?:\/\/(www.)?(g|google)\.cn 302 https://www.google.com
+[MITM]
+www.google.cn
