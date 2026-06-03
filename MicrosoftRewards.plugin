@@ -13,4 +13,4 @@ hostname = login.live.com, *.bing.com, rewards.bing.com
 http-request ^https:\/\/login\.live\.com\/oauth20_desktop\.srf\* script-path=https://scriptcat.org/scripts/code/6241/微软积分商城签到（全能智能重构版）.user.js, requires-body=true, timeout=60, tag=微软积分-登录拦截
 
 # 2. 定时任务（对应原油猴脚本的 @crontab */20 * * * *）
-cron "*/20 * * * *" script-path=https://scriptcat.org/scripts/code/5559/微软积分商城签到（改进版）.user.js, timeout=120, tag=微软积分-定时签到
+cron "*/20 * * * *" script-path=https://scriptcat.org/scripts/code/6241/微软积分商城签到（全能智能重构版）.user.js, timeout=120, tag=微软积分-定时签到
