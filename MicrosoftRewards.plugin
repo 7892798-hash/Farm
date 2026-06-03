@@ -1,16 +1,10 @@
-#!name=微软积分商城签到（改进版）
+#!name=微软积分商城签到
 #!desc=每天在后台自动完成 Microsoft Rewards 任务获取积分奖励（包含签入、阅读、活动、搜索）。
 #!icon=https://rewards.bing.com/rewards.png
 #!author=geoisam & Loon适配
 #!homepage=https://github.com/geoisam/FuckScripts
 #!date=2026-03-02
 
-[MITM]
-hostname = login.live.com, *.bing.com, rewards.bing.com
-
 [Script]
-# 1. 捕获登录和授权码（对应原油猴脚本的 match）
-http-request ^https:\/\/login\.live\.com\/oauth20_desktop\.srf\* script-path=https://scriptcat.org/scripts/code/6241/微软积分商城签到（全能智能重构版）.user.js, requires-body=true, timeout=60, tag=微软积分-登录拦截
-
-# 2. 定时任务（对应原油猴脚本的 @crontab */20 * * * *）
+# 定时任务（对应原油猴脚本的 @crontab */20 * * * *）
 cron "*/20 * * * *" script-path=https://scriptcat.org/scripts/code/6241/微软积分商城签到（全能智能重构版）.user.js, timeout=120, tag=微软积分-定时签到
