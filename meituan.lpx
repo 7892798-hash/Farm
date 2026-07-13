@@ -1,14 +1,16 @@
 #!name = 美团自动签到
-#!desc = 美团Cookie获取 + 自动签到插件
+#!desc = 美团Cookie获取 + 自动签到
 #!author = ChatGPT
 
 [Script]
 
-# 获取美团签到参数
-http-request ^https:\/\/(api|i)\.meituan\.com\/ script-path=https://raw.githubusercontent.com/7892798-hash/Farm/refs/heads/main/meituan_cookie.js,tag=美团参数获取,timeout=10,enable=true
+# 美团参数获取
+http-request ^https:\/\/(api|i)\.meituan\.com\/ script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/cookies.plugin,tag=美团Cookie获取,timeout=10,enable=true
 
-# 每日签到
+# 美团签到
 cron "0 8 * * *" script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/meituan/meituan.js,tag=美团签到,timeout=300,enable=true
 
+
 [MITM]
+
 hostname = api.meituan.com,i.meituan.com
