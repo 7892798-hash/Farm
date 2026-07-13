@@ -1,4 +1,6 @@
-
+#!name = 😀 小米商城抽奖脚本
+#!desc = 小米商城自动签到
+#!icon = https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/mishop.png
 [MITM]
 hostname = shop-api.retail.mi.com
 
