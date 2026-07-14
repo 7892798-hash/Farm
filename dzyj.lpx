@@ -1,3 +1,8 @@
+[rewrite_local]
+^https?:\/\/mobile-new\.chinaeew\.cn\/v\d\/order\/apple\/vip url script-response-body https://raw.githubusercontent.com/7892798-hash/Farm/refs/heads/main/dzyj.lpx
+[mitm]
+hostname = mobile-new.chinaeew.cn
+
 let cc = JSON.parse($response.body);
 cc.data = {
   "productName" : "SVIP",
